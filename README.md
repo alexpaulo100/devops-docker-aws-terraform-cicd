@@ -119,5 +119,6 @@ O GitHub Actions cuidará de todo o processo, autenticando via OIDC e executando
 📚 Conclusão
 Este projeto consolida os fundamentos essenciais do ecossistema DevOps, unindo containerização, automação de infraestrutura e integração contínua em um único fluxo.
 Ao final, você terá um pipeline completo e seguro, capaz de criar, provisionar e implantar aplicações automaticamente na nuvem AWS.
+```
 
 <p align="center">💻 Desenvolvido por <b>Alex Silva</b> — Desenvolvedor e Engenheiro de Dados apaixonado por DevOps e automação.</p>
