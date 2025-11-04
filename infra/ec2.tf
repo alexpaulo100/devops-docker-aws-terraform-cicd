@@ -1,5 +1,5 @@
 resource "aws_instance" "website_server" {
-  ami                    = "ami-0b016c703b95ecbe4" #Amazon Linux 2 AMI
+  ami                    = "ami-083b3f53cbda7e5a4" #Amazon Linux 2 AMI
   instance_type          = "t2.micro"
   key_name               = "chave-site-prod"
   vpc_security_group_ids = [aws_security_group.website_sg.id]
@@ -9,14 +9,14 @@ resource "aws_instance" "website_server" {
   tags = {
     Name        = "website-server"
     Provisioned = "Terraform"
-    Cliente     = "Maria"
+    Cliente     = "Alex"
   }
 }
 
 ## Security Group
 resource "aws_security_group" "website_sg" {
   name   = "website-sg"
-  vpc_id = "vpc-0ff60a695425883cf"
+  vpc_id = "vpc-056731ed5c3c6488b"
   tags = {
     Name        = "website-sg"
     Provisioned = "Terraform"
