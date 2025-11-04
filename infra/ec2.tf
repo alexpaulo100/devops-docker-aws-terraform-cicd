@@ -20,13 +20,13 @@ resource "aws_security_group" "website_sg" {
   tags = {
     Name        = "website-sg"
     Provisioned = "Terraform"
-    Cliente     = "Maria"
+    Cliente     = "Alex"
   }
 }
 
 resource "aws_vpc_security_group_ingress_rule" "allow_ssh" {
   security_group_id = aws_security_group.website_sg.id
-  cidr_ipv4         = "seu-ip/32"
+  cidr_ipv4         = "191.253.127.21/32"
   from_port         = 22
   ip_protocol       = "tcp"
   to_port           = 22
