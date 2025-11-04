@@ -35,6 +35,73 @@ permissions:
 
 jobs:
   job1:
+    name: Terraform Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v5.0.0
+
+      - name: "Configure AWS Credentials" 
+        uses: aws-actions/configure-aws-credentials@v5.1.0
+        with:
+          role-to-assume: arn:aws:iam::907493357448:role/GithubinfraRole
+          aws-region: us-east-2
+
+      - name: HashiCorp - Setup Terraform
+        uses: hashicorp/setup-terraform@v3.1.2 
+
+      - name: Terraform Init
+        run: terraform init
+        working-directory: infra
+      
+      - name: Terraform Validate
+        run: terraform validate
+        working-directory: infra
+      
+      - name: Terraform Plan
+        run: terraform plan -out=tfplan
+        working-directory: infra
+      
+      - name: Terraform Apply
+        run: terraform apply -auto-approve tfplan
+        if: github.event.inputs.apply == 'true'
+        name: Terraform CI/CD
+
+on:
+  workflow_dispatch: # Allows manual triggering of the workflow
+    inputs:
+      apply:
+        description: 'Executar o terraform apply?'
+        required: true
+        default: 'false'
+        type: choice #Poderia ser do tipo boolean, mas escolhi choice para deixar mais amigável
+        options:
+          - true
+          - false
+
+      destroy:
+        description: 'Destruir ambiente?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false
+
+      plan_destroy:
+        description: 'Planejar o destroy do ambiente?'
+        required: true
+        default: 'false'
+        type: choice
+        options:
+          - true
+          - false          
+permissions:
+  id-token: write
+  contents: read
+
+jobs:
+  job1:
     name: Terraform
     runs-on: ubuntu-latest
     steps:
@@ -52,21 +119,28 @@ jobs:
 
       - name: Terraform Init
         run: terraform init
+        working-directory: infra
       
       - name: Terraform Validate
         run: terraform validate
+        working-directory: infra
       
       - name: Terraform Plan
         run: terraform plan -out=tfplan
+        working-directory: infra
       
       - name: Terraform Apply
         run: terraform apply -auto-approve tfplan
         if: github.event.inputs.apply == 'true'
+        working-directory: infra
 
       - name: Plan Destroy
         run: terraform plan -destroy -out=tfplandestroy
         if: github.event.inputs.plan_destroy == 'true'
+        working-directory: infra
 
       - name: Terraform Destroy
         run: terraform apply -destroy -auto-approve tfplandestroy
         if: github.event.inputs.destroy == 'true'
+        working-directory: infra
+
