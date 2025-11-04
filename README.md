@@ -3,6 +3,8 @@
 <p align="center">Meu primeiro projeto prático DevOps completo — utilizando Docker, AWS, Terraform e pipeline CI/CD.</p>
 
 <p align="center">
+  
+  <img src="https://img.shields.io/badge/Linux-success?logo=linux&logoColor=white"/>
   <img src="https://img.shields.io/badge/IaC-Terraform-blueviolet"/>
   <img src="https://img.shields.io/badge/Cloud-AWS-orange"/>
   <img src="https://img.shields.io/badge/Container-Docker-blue"/>
