@@ -26,7 +26,7 @@ Durante o desenvolvimento, foram abordados:
 
 ---
 
-## 🧩 O que você vai dominar
+## 🧩 Habilidades desenvolvidas
 
 | Pilar | Ferramenta | Benefício |
 |:------|:------------|:-----------|
@@ -38,7 +38,7 @@ Durante o desenvolvimento, foram abordados:
 ---
 
 ## 📦 Estrutura do Projeto
-
+````bash
 .
 ├── infra/ # Código Terraform para infraestrutura AWS
 ├── website/ # Aplicação containerizada em Docker
@@ -48,6 +48,7 @@ Durante o desenvolvimento, foram abordados:
 
 yaml
 Copiar código
+````
 
 ---
 
